@@ -18,7 +18,9 @@ const dbConnection = mongoose.connect(
   .then(()=>  console.log(port +' is connected  ') ).catch((err)=>{
     console.log("the error is caused by " + err)
   })
-
+app.get('/', (req,res)=>{
+  res.sendFile(path.join(__dirname, 'get.html'));
+})
 
  const propertySchema = mongoose.Schema(
    {
