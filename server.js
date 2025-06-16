@@ -12,12 +12,24 @@ app.use(express.urlencoded({extended:true}))
 
 const mongoose = require('mongoose')
 const port = 8080;
-const dbConnection = mongoose.connect(
-  'mongodb+srv://Richietron:74267426%40Okon@richietron-7426.0pgvw.mongodb.net/?retryWrites=true&w=majority&appName=Richietron-7426'
-  )
-  .then(()=>  console.log(port +' is connected  ') ).catch((err)=>{
-    console.log("the error is caused by " + err)
-  })
+
+const url = `mongodb+srv://Richietron:74267426%40Okon@richietron-7426.0pgvw.mongodb.net/`
+
+
+
+//app.use(express.static("build"))
+
+
+
+mongoose.connect(url)
+          .then(() => {
+          console.log("You have been connected to the database:", url);
+         })
+        .catch(err => {
+        console.error("Database connection error:", err);
+         });
+         
+         
 app.get('/', (req,res)=>{
   res.sendFile(path.join(__dirname, 'get.html'));
 })
